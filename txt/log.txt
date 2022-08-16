@@ -1,0 +1,70 @@
+模式运行后工作日志：
+2021/12/24：修改边界场文件中海冰密集度数据到[0-1]
+                      尝试dt=30s进行运行，依然报错dye_02写入nc文件，溢出
+2021/12/25：通过mask掉dye_02溢出点，尝试dt=30s进行运行
+2021/12/26：dt=30s成功运行4个月
+                      下载ERA5数据：Mean surface downward short-wave radiation flux（1998-2018年）
+2021/12/27：修改大气forcing文件，加入短波辐射变量swrad，替换ROMS本身计算短波辐射，运行测试成功
+                      dt=30s成功运行7个月
+2021/12/28：dt=30s成功运行9个月
+2021/12/29：制作2003-2019年大气forcing文件
+                      dt=30s成功运行1年，dt=30s运行测试成功
+2022/01/05:  完成2003年-2019年边界场数据的插值，并将边界场流速数据发给陈元杰加潮
+2022/01/13：添加潮汐数据（TPOX9）进入边界场文件，并成功运行1个月
+                      .in文件中边界场边界条件修改
+2022/01/14：更换模型初始场为dinniman环南极模式，试运行出错
+2022/01/15：修改初始场插值方法，成功运行20天，报错速度溢出
+2022/01/16：通过修改网格文件mask掉相应点，成功运行
+2022/01/17：完成模型边界场文件（2003-2018年）上传
+2022/01/18：从20030101开始进行积分实验
+2022/01/20：大气forcing文件中srf_time报错，修改大气forcing文件
+2022/03/10：对SST进行修正，采用方法：QCORRECTION或TCLM_NUDGING
+2022/03/28：海表温度异常高和结冰异常少的原因应为短波辐射输入的时间分辨率太大，造成模型无法准确的捕捉日夜的短波辐射变化
+2022/04/02：尝试增大模型气候强迫场的时间分辨率：风场、气温、云、短波辐射为每3小时；气压、降水为每小时,运行模型进行测试
+2022/04/08：运行模型一年半，海表面温度和结冰的情况改善明显
+2022/04/16：根据模型运行结果，存在一些速度、温度明显异常的点，根据冰架地形和网格点判断，可能的原因是冰架地形过于陡峭或网格点过于尖锐
+2022/04/19：修改相应的网格点，平滑相应点的冰架，模型成功以dt=60s运行，时间缩短一半
+2022/05/29:   在.h中打开ana.srflx修改大气强迫场中短波辐射的时间分辨率，修改为每两天，尝试运行
+2022/06/04:   在.h中打开albedo选项，增加反照率
+2022/06/26:   bry文件中海冰密集度在2006年后出错，修改
+2022/07/20:   测试在set_vbc.h中限定冰架融水示踪剂释放的区域
+2022/07/28:   在模型中添加输出melt_rate的代码
+                     修改源代码处：
+                     Modules/mod_forces.F （把melt_rate添加在FORCES模块中）
+                     Modules/mod_average.F      401-403   914-920
+                     Module/mod_ncparam.F      178    1852-1853
+                     Nonlinear/set_vbc.F              257   72   309
+                     Nonlinear/set_avg.F              304-310  3392-3405 
+                     Utility/def_his.F                     563-578   3230-3232
+                     Utility/wrt_his.F                     288-306
+                     Utility/def_avg.F                    479-493   2873-2875   3293-3297
+                     Utility/wrt_avg.F                    120-139
+                     ocean.in
+                     read_phypar.F
+                     varinfo_RAS.dat
+ 2022/07/28:  再次检查RAS模型代码的修改
+                    需要修改的目录：
+                  ROMS\SeaIce\i2d_bc.F
+                  ROMS\SeaIce\ice_mk.h
+                  ROMS\SeaIce\tibc.F
+                  ROMS\Nonlinear\lmd_skpp.F
+                  ROMS\Nonlinear\bulk_flux.F
+                  ROMS\Nonlinear\get_data.F
+                  ROMS\Nonlinear\obc_volcons.F---【未改】
+                  ROMS\Nonlinear\set_data.F
+                  ROMS\Nonlinear\set_vbc.F
+                  ROMS\Nonlinear\ini_fields.F
+                  ROMS\Nonlinear\pre_step3d.F
+                  ROMS\Nonlinear\step3d_t.F
+                  ROMS\Nonlinear\t3dbc_im.F
+                  ROMS\Modules\mod_ice.F
+                  ROMS\Modules\mod_ncparam.F
+                  ROMS\Modules\mod_scalars.F
+                  ROMS\Utility\wrt_diags.F
+                  ROMS\Functionals\ana_srflux.h
+2022/07/29：使用1979-2021年ERA5月平均数据、边界场月平均数据进行模型气候态实验，从2014年restart文件开始，预计运行五年
+
+
+
+
+
