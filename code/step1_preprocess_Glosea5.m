@@ -34,7 +34,7 @@ for iyear=Year_begin:Year_end
        v=v(:,:,1:72,:);
        %date & day number
        num_days=eomday(iyear,jmonth); 
-       for kdays=1:num_days    
+       for kdays=1:num_days
            ts(kdays,:)=[num2str(kdays,'%02d'),'-',Monthabb(jmonth,:),'-',num2str(iyear)];
            td(kdays,:)=datenum(ts(kdays,:))-mybasedate;
        end       
@@ -51,3 +51,11 @@ end
 %更改网格
 depth=depth(1:72,:);
 save('Glosea5_grid_ross.mat','depth','Glosea5_mask','lat_Glosea5','lon_Glosea5');
+
+
+
+
+
+
+
+
