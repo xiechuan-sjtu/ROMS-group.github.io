@@ -27,11 +27,11 @@
 #undef  JM2006_EOS
 #define SOLVE3D
 #define ANA_SRFLUX
-#define ANA_SPFLUX       /* Passive surface tracer flux...may change-turned on 12/18/12 */
+#define ANA_SPFLUX       /* Passive surface tracer flux */
 #define ANA_BTFLUX
 #define ANA_BSFLUX
-#define ANA_BPFLUX       /* Passive bottom tracer flux...may change-turned on 12/18/12 */
-#define MIX_S_UV         /* Note: This is different from old Ross */
+#define ANA_BPFLUX       /* Passive bottom tracer flux */
+#define MIX_S_UV         
 #define MIX_GEO_TS
 #define LMD_MIXING
 #define LMD_RIMIX
@@ -42,11 +42,11 @@
 #undef  LMD_SHAPIRO
 #define HDF5
 
-#undef  RADIATION_2D     /* Think about this */
+#undef  RADIATION_2D     
 
 #define WEST_PTRADIATION
 #define EAST_PTRADIATION
-#define NORTH_PTRADIATION  /* Turned on 1/30/2013 */
+#define NORTH_PTRADIATION 
 
 #define SPLINES
 #define MASKING
