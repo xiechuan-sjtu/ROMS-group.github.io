@@ -1,3 +1,5 @@
 RAS模型常见问题汇总：
 [1]Q:如何在特定的冰架位置释放冰架融水示踪剂（dye_03）？
-A:在文件ROMS/Nonlinear/set_vbc.F中定义dye_03处‘stflx(i,j,inert(3))=10000.0_r8*melt_rate(i,j)’前后，使用IF语句添加网格i和j的限定语句，即可限定特定区域的冰架范围。
+A:在文件 ROMS/Nonlinear/set_vbc.F 中定义dye_03处 ‘stflx(i,j,inert(3))=10000.0_r8*melt_rate(i,j)’ 前后，使用IF语句添加网格i和j的限定语句，即可限定特定区域的冰架范围。
+
+[2]Q:
