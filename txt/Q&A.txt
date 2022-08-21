@@ -3,4 +3,6 @@ RAS模型常见问题汇总：
 A:在文件 ROMS/Nonlinear/set_vbc.F 中定义dye_03处 ‘stflx(i,j,inert(3))=10000.0_r8*melt_rate(i,j)’ 前后，使用IF语句添加网格i和j的限定语句，即可限定特定区域的冰架范围。
 
 [2]Q:运行时，首步报错出现NaN的原因？
-A：大气强迫场中变量cloud fraction和rain fall rate不能出现负值
+A：（1）大气强迫场中变量cloud fraction和rain fall rate不能出现负值；
+   （2）初始场中不能出现NaN值，mask_rho=0网格处应赋值为0；
+   
