@@ -8,3 +8,11 @@ A：（1）在对大气强迫场中变量cloud fraction和rain fall rate进行�
    
 [3]Q:模型读取强迫场中变量时报错的原因？
 A：要确保每个强迫场文件中所有变量的最后一个时间点相同，否则模型运行到相应时间点时会出现变量读取错误。
+
+[4]Q:关于ROMS模型方向（XI,ETA）和经纬度坐标（LON,LAT）旋转的转换公式。
+A：u(LON,LAT)=u(XI,ETA)*cos(angle(i,j))-v(XI,ETA)*sin(angle(i,j))
+   v(LON,LAT)=v(XI,ETA)*cos(angle(i,j))+u(XI,ETA)*sin(angle(i,j))
+   
+   u(XI,ETA)=u(LON,LAT)*cos(angle(i,j))+v(LON,LAT)*sin(angle(i,j))
+   v(XI,ETA)=v(LON,LAT)*cos(angle(i,j))-u(LON,LAT)*sin(angle(i,j))
+   详情可见ROMS论坛：https://www.myroms.org/forum/viewtopic.php?p=684&hilit=wind+rotation&sid=3f93be5d50fa904f412f8b8d018997e6#p684
